@@ -4,23 +4,27 @@ import win32gui
 import win32con
 import keyboard
 import time
+import winsound
+from izdvajanjeImenaGrupe import vratiImeGrupe
+from scroller import messageScraping2
+import configparser
+config = configparser.ConfigParser()
+config.read("config.ini")
 from PIL import Image
 # const
-startX = 0
-startY = 279
-width = 374
-height = 93
-scrollHeight=150
-rightX=500
-rightY=300
-leftX=80
-leftY=300
-leftX2=80
-leftY2=1020
-testX=340
-testY=40
-purple=(134, 115, 252)
-
+startX = int(config['Miksa']['startX'])
+startY = int(config['Miksa']['startY'])
+width = int(config['Miksa']['width'])
+height = int(config['Miksa']['height'])
+scrollHeight = int(config['Miksa']['scrollHeight'])
+leftX = int(config['Miksa']['leftX'])
+leftY = int(config['Miksa']['leftY'])
+leftX2 = int(config['Miksa']['leftX2'])
+leftY2 = int(config['Miksa']['leftY2']) 
+testX = int(config['Miksa']['testX'])
+testY = int(config['Miksa']['testY'])
+purple = (134, 115, 252)
+gray=(117, 124, 132)
 def click(x,y):
     win32api.SetCursorPos((x,y))
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,x,y,0,0)
@@ -34,8 +38,8 @@ def scroll(sH):
 
 def nemaPoruka(im):
     pix=im.load()
-    print(pix[testX,testY])
-    return pix[testX,testY]!=purple
+    #print(pix[testX,testY])
+    return pix[testX,testY]!=purple and pix[testX,testY]!=gray
 
 def spustiDole():
     scroll(-100000000)
@@ -49,13 +53,7 @@ def vratiGore():
 print(win32api.GetComputerName())
 time.sleep(2) 
 im = pyautogui.screenshot('screenshot.png',region=(startX,startY,width,height))
-'''
-#im = pyautogui.screenshot('screenshot.png',region=(startX,startY,width,height))
-im=Image.open('screenshot.png')
-pix=im.load()
-print(im.size) 
-print(pix[testX,testY])
-'''
+
 while True:
     #click(leftX,leftY)
     vratiGore()
@@ -67,7 +65,7 @@ while True:
         if keyboard.is_pressed('esc'):
             print("KRAJ")
             break
-        print("USO")
+        # print("USO")
         #click(leftX,leftY)
         im=pyautogui.screenshot('screenshot.png',region=(startX,startY,width,height))
         if nemaPoruka(im):
@@ -75,12 +73,13 @@ while True:
             break
         time.sleep(2)
         click(leftX,leftY)
-        click(rightX,rightY)
+        # click(rightX,rightY)
         time.sleep(2)
-        #OVDE SE POZIVAJU PAJA I DAVID
+        imeGrupe = vratiImeGrupe(im)
+        print(imeGrupe)
+        messageScraping2(imeGrupe)
+        winsound.Beep(1000, 1000)
         click(leftX,leftY)
         scroll1()
     time.sleep(10)
     
-#myScreenshot = pyautogui.screenshot('screenshot.png',region=(startX,startY,width,height))
-# myScreenshot.save(r'screenshot.png')
