@@ -6,7 +6,8 @@ pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tessera
 
 def vratiImeGrupe(img):
     #preporucujem koriscenje opencv biblioteke preko PIL jer je uspesnije prepoznavanje
-    cropped = img[7:29, 71:245]
+    cropped = img.crop((71,7,245,29))
+    #cropped = img[7:29, 71:245]
     #cv2.imwrite('cropped.png',cropped)
 
     #vracaju se 4 rezultata, posto varira koji je najuspesniji od konkretnog primera
