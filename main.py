@@ -5,7 +5,7 @@ import win32con
 import keyboard
 import time
 import winsound
-from izdvajanjeImenaGrupe import vratiImeGrupe
+from groupNameExtraction import vratiImeGrupe
 from scroller import messageScraping2
 import configparser
 config = configparser.ConfigParser()
