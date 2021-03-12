@@ -6,13 +6,13 @@ This is the first part of the bigger project - A police patrol locating platform
 
 With the lack of Viber API, we resorted to an unconventional way of extracting viber messages - we used python mouse control tools to select messages and copy the texts, as well as determine the the current group from the screenshot.
 
-## groupNameExtraction.py
+### groupNameExtraction.py
 
 This scipt screenshots the viber interface, crops the image while focusing on the group with latest messages and applies integrated text recognition model to extract the name of the group from the image
 
-## scroller.py
+### scroller.py
 
 Description...
 
-## main.py
+### main.py
 Description...
