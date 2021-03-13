@@ -15,4 +15,7 @@ This scipt screenshots the viber interface, crops the image while focusing on th
 Description...
 
 ### main.py
-Description...
+
+This script checks, at a specified time interval, if there are new messages in groups (by checking the color of the specific pixel). <br>
+If some group has a new message, it takes a screenshot and calls a function from *groupNameExtraction.py* to determine the group's name.<br>
+After that, it calls the  *messageScraping2* function from *scroller.py*, which reads new messages.
